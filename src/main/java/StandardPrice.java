@@ -10,6 +10,6 @@ public class StandardPrice implements Promotion
     @Override
     public double CalculatePromotionTotal(int qtyBought)
     {
-        return -1.0;
+        return qtyBought * this.catalogPrice;
     }
 }

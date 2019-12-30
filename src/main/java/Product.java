@@ -3,5 +3,5 @@ public interface Product
     String getName();
     double calculatePrice();
     void addBoughtItem(int amount);
-    void removeBoughtItem(int quantity);
+    boolean removeBoughtItem(int quantity);
 }

@@ -28,4 +28,18 @@ public class WeightedProductTests {
         this.weightedProduct.addBoughtItem(12);
         Assertions.assertEquals(30 * PRICE, this.weightedProduct.calculatePrice());
     }
+
+    @Test
+    void removeBoughtItem_addAndRemove_correctWeights()
+    {
+        this.weightedProduct.addBoughtItem(12);
+        this.weightedProduct.addBoughtItem(15);
+        Assertions.assertTrue(this.weightedProduct.removeBoughtItem(15));
+    }
+
+    @Test
+    void removeBoughtItem_removeNonexistingWeight_noWeights()
+    {
+        Assertions.assertFalse(this.weightedProduct.removeBoughtItem(15));
+    }
 }

@@ -6,23 +6,35 @@ public class QuantityProduct implements Product
 
     public QuantityProduct(String name, Promotion promo)
     {
-
+        this.name = name;
+        this.qtyBought = 0;
+        this.promo = promo;
     }
 
     public String getName()
     {
-        return "";
+        return this.name;
     }
 
     public double calculatePrice() {
-        return -1.0;
+        return this.promo.CalculatePromotionTotal(this.qtyBought);
     }
 
-    public void addBoughtItem(int amount) {
-
+    public void addBoughtItem(int amount)
+    {
+        this.qtyBought += amount;
     }
 
-    public void removeBoughtItem(int quantity) {
-
+    public boolean removeBoughtItem(int quantity)
+    {
+        if (this.qtyBought - quantity >= 0)
+        {
+            this.qtyBought -= quantity;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
