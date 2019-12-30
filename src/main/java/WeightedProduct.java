@@ -5,19 +5,27 @@ public class WeightedProduct implements Product
     private String name;
     private List<Integer> weights;
     Promotion promo;
-    public WeightedProduct(String name)
+
+    public WeightedProduct(String name, Promotion promo)
     {
-        this.name = name;
+
     }
 
-    @Override
+    public String getName() {
+        return "";
+    }
+
     public double calculatePrice()
     {
         return -1.0;
     }
 
-    @Override
-    public void buyItem(int amount)
+    public void addBoughtItem(int amount)
+    {
+
+    }
+
+    public void removeBoughtItem(int weight)
     {
 
     }

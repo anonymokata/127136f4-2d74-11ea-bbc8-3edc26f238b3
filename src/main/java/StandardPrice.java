@@ -1,14 +1,15 @@
 public class StandardPrice implements Promotion
 {
-    private int catalogPrice;
+    private double catalogPrice;
 
-    public StandardPrice(int catalogPrice)
+    public StandardPrice(double catalogPrice)
     {
         this.catalogPrice = catalogPrice;
     }
 
     @Override
-    public double CalculatePromotionTotal(int qtyBought) {
+    public double CalculatePromotionTotal(int qtyBought)
+    {
         return -1.0;
     }
 }
