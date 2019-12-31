@@ -11,20 +11,25 @@ public class QuantityProduct implements Product
         this.promo = promo;
     }
 
+    @Override
     public String getName()
     {
         return this.name;
     }
 
-    public double calculatePrice() {
+    @Override
+    public double calculatePrice()
+    {
         return this.promo.CalculatePromotionTotal(this.qtyBought);
     }
 
+    @Override
     public void addBoughtItem(int amount)
     {
         this.qtyBought += amount;
     }
 
+    @Override
     public boolean removeBoughtItem(int quantity)
     {
         if (this.qtyBought - quantity >= 0)

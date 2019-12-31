@@ -2,9 +2,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class WeightedProductTests {
+public class WeightedProductTests
+{
     private final static double PRICE = 42;
-
     private WeightedProduct weightedProduct;
 
     @BeforeEach
