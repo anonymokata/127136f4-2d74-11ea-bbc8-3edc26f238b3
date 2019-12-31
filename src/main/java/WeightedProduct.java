@@ -14,10 +14,13 @@ public class WeightedProduct implements Product
         this.promo = promo;
     }
 
-    public String getName() {
+    @Override
+    public String getName()
+    {
         return this.name;
     }
 
+    @Override
     public double calculatePrice()
     {
         int totalWeight = 0;
@@ -28,14 +31,15 @@ public class WeightedProduct implements Product
         return this.promo.CalculatePromotionTotal(totalWeight);
     }
 
+    @Override
     public void addBoughtItem(int amount)
     {
         weights.add(amount);
     }
 
+    @Override
     public boolean removeBoughtItem(int weight)
     {
         return weights.remove(Integer.valueOf(weight));
     }
 }
-

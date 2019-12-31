@@ -1,10 +1,10 @@
 public class MultipleSetPrice implements Promotion
 {
-    private int msrp;
+    private double msrp;
     private int qtyRequired;
     private double dealGroupPrice;
 
-    public MultipleSetPrice(int msrp, int qtyRequired, double dealGroupPrice)
+    public MultipleSetPrice(double msrp, int qtyRequired, double dealGroupPrice)
     {
 
     }
