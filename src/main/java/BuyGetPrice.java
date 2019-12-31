@@ -6,12 +6,16 @@ public class BuyGetPrice implements Promotion{
 
     public BuyGetPrice(double msrp, int qtyRequired, double qtyDiscount, double percentOff)
     {
-
+        this.msrp = msrp;
+        this.qtyRequired = qtyRequired;
+        this.qtyDiscount = qtyDiscount;
+        this.percentOff = percentOff;
     }
 
     @Override
     public double CalculatePromotionTotal(int qtyBought)
     {
-        return 0;
+        int discountsAvailable = qtyBought / this.qtyRequired;
+        return (qtyBought  - discountsAvailable * this.percentOff) * msrp;
     }
 }

@@ -6,12 +6,16 @@ public class MultipleSetPrice implements Promotion
 
     public MultipleSetPrice(double msrp, int qtyRequired, double dealGroupPrice)
     {
-
+        this.msrp = msrp;
+        this.qtyRequired = qtyRequired;
+        this.dealGroupPrice = dealGroupPrice;
     }
 
     @Override
     public double CalculatePromotionTotal(int qtyBought)
     {
-        return 0;
+        int dealGroups = qtyBought / this.qtyRequired;
+        int remainder = qtyBought % this.qtyRequired;
+        return dealGroups * this.dealGroupPrice + remainder * this.msrp;
     }
 }

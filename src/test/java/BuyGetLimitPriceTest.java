@@ -10,7 +10,7 @@ class BuyGetLimitPriceTest {
     @BeforeEach
     void setup()
     {
-        this.buyGetLimitPrice = new BuyGetLimitPrice(ORIGINAL_PRICE, 1, 1, 100.0, 4);
+        this.buyGetLimitPrice = new BuyGetLimitPrice(ORIGINAL_PRICE, 2, 1, 1.00, 4);
     }
 
     @Test

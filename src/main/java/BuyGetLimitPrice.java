@@ -8,11 +8,24 @@ public class BuyGetLimitPrice implements Promotion
 
     public BuyGetLimitPrice(double msrp, int qtyRequired, int qtyDiscount, double percentOff, int dealQtyLimit)
     {
-
+        this.msrp = msrp;
+        this.qtyRequired = qtyRequired;
+        this.qtyDiscount = qtyDiscount;
+        this.percentOff = percentOff;
+        this.dealLimitQty = dealQtyLimit;
     }
 
     @Override
     public double CalculatePromotionTotal(int qtyBought) {
-        return 0;
+        int discountsAvailable;
+        if (qtyBought >= this.dealLimitQty)
+        {
+            discountsAvailable = this.dealLimitQty / this.qtyRequired;
+        }
+        else
+        {
+            discountsAvailable = qtyBought / this.qtyRequired;
+        }
+        return (qtyBought  - discountsAvailable * this.percentOff) * msrp;
     }
 }

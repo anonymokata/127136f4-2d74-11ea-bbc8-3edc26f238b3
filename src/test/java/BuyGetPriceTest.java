@@ -10,7 +10,7 @@ class BuyGetPriceTest
     @BeforeEach
     void setup()
     {
-        this.buyGetPrice = new BuyGetPrice(ORIGINAL_PRICE, 1, 1, 100.0);
+        this.buyGetPrice = new BuyGetPrice(ORIGINAL_PRICE, 2, 1, 1.00);
     }
 
     @Test
