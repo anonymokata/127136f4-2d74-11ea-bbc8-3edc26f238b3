@@ -10,7 +10,7 @@ Organziation
 * Products - items which the user can buy, specified in the driver class before transactions
 * Promos - Pricing objects for products (e.g. standard pricing, BOGO pricing, group pricing)
 
-Future Things
+Future Plans
 -------------
 1. __Better allow users to enter items in the catalog instead of hardcoding a method in the driver class__
 2. Input testing for main driver to better guarentee application works as expected (i.e integeration testing)
