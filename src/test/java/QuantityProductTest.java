@@ -2,8 +2,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
+
 class QuantityProductTest {
-    private final static int PRICE = 42;
+    private final static BigDecimal PRICE = new BigDecimal(42);
 
     private Promotion promo;
     private QuantityProduct quantityProduct;
@@ -19,6 +21,6 @@ class QuantityProductTest {
     void calculatePrice_standardPrice_correctPrice()
     {
         this.quantityProduct.addBoughtItem(2);
-        Assertions.assertEquals(84, this.quantityProduct.calculatePrice());
+        Assertions.assertEquals(new BigDecimal(84), this.quantityProduct.calculatePrice());
     }
 }

@@ -1,15 +1,17 @@
+import java.math.BigDecimal;
+
 public class StandardPrice implements Promotion
 {
-    private double catalogPrice;
+    private BigDecimal msrp;
 
-    public StandardPrice(double catalogPrice)
+    public StandardPrice(BigDecimal catalogPrice)
     {
-        this.catalogPrice = catalogPrice;
+        this.msrp = catalogPrice;
     }
 
     @Override
-    public double CalculatePromotionTotal(int qtyBought)
+    public BigDecimal CalculatePromotionTotal(int qtyBought)
     {
-        return qtyBought * this.catalogPrice;
+        return this.msrp.multiply(new BigDecimal(qtyBought));
     }
 }

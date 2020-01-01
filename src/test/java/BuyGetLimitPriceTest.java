@@ -1,16 +1,17 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import java.math.BigDecimal;
 
 class BuyGetLimitPriceTest {
 
-    private final static double ORIGINAL_PRICE = 42.00;
+    private final static BigDecimal ORIGINAL_PRICE = new BigDecimal(42);
     private BuyGetLimitPrice buyGetLimitPrice;
 
     @BeforeEach
     void setup()
     {
-        this.buyGetLimitPrice = new BuyGetLimitPrice(ORIGINAL_PRICE, 2, 1, 1.00, 4);
+        this.buyGetLimitPrice = new BuyGetLimitPrice(ORIGINAL_PRICE, 2, 1, 100, 4);
     }
 
     @Test
@@ -28,6 +29,6 @@ class BuyGetLimitPriceTest {
     @Test
     void calculatePromotionTotal_BuyTenGetFiveFree_HalfOffPrice()
     {
-        Assertions.assertEquals(ORIGINAL_PRICE * 4, this.buyGetLimitPrice.CalculatePromotionTotal(6));
+        Assertions.assertEquals(ORIGINAL_PRICE .multiply(new BigDecimal(4)), this.buyGetLimitPrice.CalculatePromotionTotal(6));
     }
 }

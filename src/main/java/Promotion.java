@@ -1,4 +1,6 @@
+import java.math.BigDecimal;
+
 public interface Promotion
 {
-    double CalculatePromotionTotal(int qtyBought);
+    BigDecimal CalculatePromotionTotal(int qtyBought);
 }

@@ -1,72 +1,96 @@
+import java.math.BigDecimal;
 import java.util.HashMap;
 
 public class Register
 {
     private HashMap<String, Product> catalog;
-    private double currentBill;
+    private BigDecimal currentBill;
 
     public Register()
     {
         this.catalog = new HashMap<>();
-        this.currentBill = 0;
+        this.currentBill = new BigDecimal(0);
     }
 
     public Register(HashMap<String, Product> catalog)
     {
         this.catalog = catalog;
-        this.currentBill = 0;
+        this.currentBill = new BigDecimal(0);
     }
 
-    public double getCurrentBill()
+    public BigDecimal getCurrentBill()
     {
         return this.currentBill;
     }
 
-    public boolean addCatalogProduct(Product product)
+    public void addCatalogProduct(Product product) throws DuplicateCatalogProductException
     {
         String productName = product.getName();
         if (!this.catalog.containsKey(productName))
         {
             this.catalog.put(productName, product);
-            return true;
         }
-        return false;
+        else
+        {
+            throw new DuplicateCatalogProductException();
+        }
+
     }
 
-    public boolean scanItem(String productName)
+    public void scanItem(String productName) throws NonexistentProductException, ProductTypeMismatch
     {
         if (this.catalog.containsKey(productName))
         {
             Product product = this.catalog.get(productName);
-            this.currentBill -= product.calculatePrice();
+            if (product instanceof WeightedProduct)
+            {
+                throw new ProductTypeMismatch();
+            }
+            this.currentBill = this.currentBill.subtract(product.calculatePrice());
             product.addBoughtItem(1);
-            this.currentBill += product.calculatePrice();
-            return true;
+            this.currentBill = this.currentBill.add(product.calculatePrice());
         }
-        return false;
+        else
+        {
+            throw new NonexistentProductException();
+        }
     }
 
-    public boolean scanItem(String productName, int weight)
+    public void scanItem(String productName, int weight) throws NonexistentProductException, ProductTypeMismatch
     {
         if (this.catalog.containsKey(productName))
         {
             Product product = this.catalog.get(productName);
-            this.currentBill -= product.calculatePrice();
+            if (product instanceof QuantityProduct)
+            {
+                throw new ProductTypeMismatch();
+            }
+            this.currentBill = this.currentBill.subtract(product.calculatePrice());
             product.addBoughtItem(weight);
-            this.currentBill += product.calculatePrice();
-            return true;
+            this.currentBill = this.currentBill.add(product.calculatePrice());
         }
-        return false;
+        else
+        {
+            throw new NonexistentProductException();
+        }
     }
 
-    public boolean removeScannedItem(String productName, int quantity)
+    public void removeScannedItem(String productName, int quantity) throws NonexistentProductException, TooFewItemsException
     {
         if (this.catalog.containsKey(productName))
         {
             Product product = this.catalog.get(productName);
-            this.currentBill -= product.calculatePrice();
-            return product.removeBoughtItem(quantity);
+            this.currentBill = this.currentBill.subtract(product.calculatePrice());
+            boolean canRemove = product.removeBoughtItem(quantity);
+            if (!canRemove)
+            {
+                throw new TooFewItemsException();
+            }
+            this.currentBill = this.currentBill.add(product.calculatePrice());
         }
-        return false;
+        else
+        {
+            throw new NonexistentProductException();
+        }
     }
 }

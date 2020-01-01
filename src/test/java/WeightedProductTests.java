@@ -2,9 +2,11 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
+
 public class WeightedProductTests
 {
-    private final static double PRICE = 42;
+    private final static BigDecimal PRICE = new BigDecimal(42);
     private WeightedProduct weightedProduct;
 
     @BeforeEach
@@ -18,7 +20,7 @@ public class WeightedProductTests
     void calculatePrice_standardPriceSingle_correctPrice()
     {
         this.weightedProduct.addBoughtItem(18);
-        Assertions.assertEquals(18 * PRICE, this.weightedProduct.calculatePrice());
+        Assertions.assertEquals(PRICE.multiply(new BigDecimal(18)), this.weightedProduct.calculatePrice());
     }
 
     @Test
@@ -26,7 +28,7 @@ public class WeightedProductTests
     {
         this.weightedProduct.addBoughtItem(18);
         this.weightedProduct.addBoughtItem(12);
-        Assertions.assertEquals(30 * PRICE, this.weightedProduct.calculatePrice());
+        Assertions.assertEquals(PRICE.multiply(new BigDecimal(30)), this.weightedProduct.calculatePrice());
     }
 
     @Test

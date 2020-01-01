@@ -1,10 +1,12 @@
+import java.math.BigDecimal;
+
 public class MultipleSetPrice implements Promotion
 {
-    private double msrp;
+    private BigDecimal msrp;
     private int qtyRequired;
-    private double dealGroupPrice;
+    private BigDecimal dealGroupPrice;
 
-    public MultipleSetPrice(double msrp, int qtyRequired, double dealGroupPrice)
+    public MultipleSetPrice(BigDecimal msrp, int qtyRequired, BigDecimal dealGroupPrice)
     {
         this.msrp = msrp;
         this.qtyRequired = qtyRequired;
@@ -12,10 +14,10 @@ public class MultipleSetPrice implements Promotion
     }
 
     @Override
-    public double CalculatePromotionTotal(int qtyBought)
+    public BigDecimal CalculatePromotionTotal(int qtyBought)
     {
         int dealGroups = qtyBought / this.qtyRequired;
         int remainder = qtyBought % this.qtyRequired;
-        return dealGroups * this.dealGroupPrice + remainder * this.msrp;
+        return this.dealGroupPrice.multiply(new BigDecimal(dealGroups)).add(this.msrp.multiply(new BigDecimal(remainder)));
     }
 }
