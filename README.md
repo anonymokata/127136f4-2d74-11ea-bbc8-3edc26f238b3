@@ -22,6 +22,7 @@ How to Build and Run
 1. ./gradlew build
 2. ./gradle run
 3. (Optional) ./gradlew test (this runs tests as ./gradlew does too)
+4. Type any of the four already added products (banana, chips, cereal, pear). Both pear and banana will require a weight when scanned.
 
 Adding your own items
 ---------------------
