@@ -1,1 +1,2 @@
-# powers-checkout
+Checkout Counter Kata by Tom Powers
+===================================
