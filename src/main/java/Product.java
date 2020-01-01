@@ -1,7 +1,9 @@
+import java.math.BigDecimal;
+
 public interface Product
 {
     String getName();
-    double calculatePrice();
+    BigDecimal calculatePrice();
     void addBoughtItem(int amount);
     boolean removeBoughtItem(int quantity);
 }

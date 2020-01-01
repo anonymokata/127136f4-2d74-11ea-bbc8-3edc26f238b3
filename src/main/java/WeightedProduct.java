@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +10,7 @@ public class WeightedProduct implements Product
 
     public WeightedProduct(String name, Promotion promo)
     {
-        this.name = name;
+        this.name = name.toLowerCase();
         this.weights = new ArrayList<>();
         this.promo = promo;
     }
@@ -21,7 +22,7 @@ public class WeightedProduct implements Product
     }
 
     @Override
-    public double calculatePrice()
+    public BigDecimal calculatePrice()
     {
         int totalWeight = 0;
         for (Integer weight : weights)

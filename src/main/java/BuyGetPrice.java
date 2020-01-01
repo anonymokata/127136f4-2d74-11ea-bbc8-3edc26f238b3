@@ -1,21 +1,25 @@
-public class BuyGetPrice implements Promotion{
-    private double msrp;
-    private int qtyRequired;
-    private double qtyDiscount;
-    private double percentOff;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
-    public BuyGetPrice(double msrp, int qtyRequired, double qtyDiscount, double percentOff)
+public class BuyGetPrice implements Promotion{
+    private BigDecimal msrp;
+    private int qtyRequired;
+    private int qtyDiscount;
+    private BigDecimal percentOff;
+
+    public BuyGetPrice(BigDecimal msrp, int qtyRequired, int qtyDiscount, int percentOff)
     {
         this.msrp = msrp;
         this.qtyRequired = qtyRequired;
         this.qtyDiscount = qtyDiscount;
-        this.percentOff = percentOff;
+        this.percentOff = new BigDecimal(percentOff).divide(new BigDecimal(100), RoundingMode.HALF_EVEN);
     }
 
     @Override
-    public double CalculatePromotionTotal(int qtyBought)
+    public BigDecimal CalculatePromotionTotal(int qtyBought)
     {
         int discountsAvailable = qtyBought / this.qtyRequired;
-        return (qtyBought  - discountsAvailable * this.percentOff) * msrp;
+        BigDecimal dealFactor = new BigDecimal(qtyBought).subtract(new BigDecimal(discountsAvailable).multiply(this.percentOff).multiply(new BigDecimal(this.qtyDiscount)));
+        return dealFactor.multiply(this.msrp);
     }
 }

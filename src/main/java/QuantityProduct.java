@@ -1,3 +1,5 @@
+import java.math.BigDecimal;
+
 public class QuantityProduct implements Product
 {
     private String name;
@@ -6,7 +8,7 @@ public class QuantityProduct implements Product
 
     public QuantityProduct(String name, Promotion promo)
     {
-        this.name = name;
+        this.name = name.toLowerCase();
         this.qtyBought = 0;
         this.promo = promo;
     }
@@ -18,7 +20,7 @@ public class QuantityProduct implements Product
     }
 
     @Override
-    public double calculatePrice()
+    public BigDecimal calculatePrice()
     {
         return this.promo.CalculatePromotionTotal(this.qtyBought);
     }

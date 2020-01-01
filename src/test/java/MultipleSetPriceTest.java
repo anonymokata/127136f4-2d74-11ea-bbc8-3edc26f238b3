@@ -2,10 +2,12 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
+
 class MultipleSetPriceTest
 {
-    private final static double ORIGINAL_PRICE = 42.00;
-    private final static double DEAL_PRICE = 100.00;
+    private final static BigDecimal ORIGINAL_PRICE = new BigDecimal(42);
+    private final static BigDecimal DEAL_PRICE = new BigDecimal(100);
     private MultipleSetPrice multipleSetPrice;
 
     @BeforeEach
@@ -17,7 +19,7 @@ class MultipleSetPriceTest
     @Test
     void calculatePromotionTotal_BuyTwo_StandardPrice()
     {
-        Assertions.assertEquals(ORIGINAL_PRICE * 2, this.multipleSetPrice.CalculatePromotionTotal(2));
+        Assertions.assertEquals(ORIGINAL_PRICE.multiply(new BigDecimal(2)), this.multipleSetPrice.CalculatePromotionTotal(2));
     }
 
     @Test
@@ -29,12 +31,12 @@ class MultipleSetPriceTest
     @Test
     void calculatePromotionTotal_BuySix_DealPrice()
     {
-        Assertions.assertEquals(DEAL_PRICE * 2, this.multipleSetPrice.CalculatePromotionTotal(6));
+        Assertions.assertEquals(DEAL_PRICE.multiply(new BigDecimal(2)), this.multipleSetPrice.CalculatePromotionTotal(6));
     }
 
     @Test
     void calculatePromotionTotal_BuyTen_DealPriceWithRemainder()
     {
-        Assertions.assertEquals(DEAL_PRICE * 3 + ORIGINAL_PRICE, this.multipleSetPrice.CalculatePromotionTotal(10));
+        Assertions.assertEquals(DEAL_PRICE.multiply(new BigDecimal(3)).add(ORIGINAL_PRICE), this.multipleSetPrice.CalculatePromotionTotal(10));
     }
 }
